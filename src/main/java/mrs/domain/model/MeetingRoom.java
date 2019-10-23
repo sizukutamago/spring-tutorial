@@ -7,8 +7,10 @@ import java.io.Serializable;
 public class MeetingRoom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "room_id")
     private Integer roomId;
 
+    @Column(name = "room_name")
     private String roomName;
 
     public Integer getRoomId() {

@@ -8,7 +8,7 @@ public class ReservableRoom implements Serializable {
     @EmbeddedId
     private ReservableRoomId reservableRoomId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "room_id", insertable = false, updatable = false)
     @MapsId("roomId")
     private MeetingRoom meetingRoom;

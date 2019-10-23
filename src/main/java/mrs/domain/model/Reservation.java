@@ -3,6 +3,7 @@ package mrs.domain.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Entity
 public class Reservation implements Serializable {
@@ -14,16 +15,28 @@ public class Reservation implements Serializable {
 
     private LocalTime endTime;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumns({
             @JoinColumn(name = "reserved_date"),
             @JoinColumn(name = "room_id")
     })
     private ReservableRoom reservableRoom;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public boolean overlap(Reservation target) {
+        if (!Objects.equals(reservableRoom.getReservableRoomId(), target.reservableRoom.getReservableRoomId())) {
+            return false;
+        }
+
+        if (startTime.equals(target.startTime) && endTime.equals(target.endTime)) {
+            return true;
+        }
+
+        return target.endTime.isAfter(startTime) && endTime.isAfter(target.startTime);
+    }
 
     public Integer getReservationId() {
         return reservationId;
