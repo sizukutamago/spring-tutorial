@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Table(name = "usr")
 public class User implements Serializable {
     @Id
-    private Integer userId;
+    private String userId;
 
     private String password;
 
@@ -19,11 +19,11 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private RoleName roleName;
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

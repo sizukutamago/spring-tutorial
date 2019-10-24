@@ -108,7 +108,7 @@ public class ReservationsController {
 
     private User dummyUser() {
         User user = new User();
-        user.setUserId(1);
+        user.setUserId("1");
         user.setFirstName("太郎");
         user.setLastName("山田");
         user.setRoleName(RoleName.USER);
